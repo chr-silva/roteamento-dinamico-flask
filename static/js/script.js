@@ -5,7 +5,7 @@
     }
 
     const filenames = {
-      'tab-main': 'main.py',
+      'tab-main': 'index.py',
       // 'tab-index': 'index.html',
       // 'tab-saudacao': 'saudacao.html',
       // 'tab-style': 'style.css' – n precisamos usar
