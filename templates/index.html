@@ -76,21 +76,22 @@
         <button class="tab" onclick="switchTab(event, 'tab-saudacao')">vercel.json</button> -->
       </div>
 
-      <div class="code-box">
+<div class="code-box">
   <div class="code-header">
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
-    <span class="filename" id="code-filename">main.py</span>
+    <span class="filename" id="code-filename">api/index.py</span>
   </div>
   <pre id="tab-main" class="tab-content active"><code><span class="keyword">import</span> os
 <span class="keyword">from</span> flask <span class="keyword">import</span> Flask, render_template
 
 <span class="comment"># Criamos a instância da aplicação Flask.</span>
-<span class="comment"># __name__ informa ao Flask onde procurar templates.</span>
-app = Flask(__name__)
+<span class="comment"># __name__ informa ao Flask onde procurar templates e arquivos estáticos.</span>
+app = Flask(__name__, <span class="variable">template_folder</span>=<span class="string">'../templates'</span>, <span class="variable">static_folder</span>=<span class="string">'../static'</span>)
 
 <span class="comment"># O decorador @app.route define qual URL aciona esta função.</span>
+<span class="comment"># A rota '/' é a raiz do site — a página inicial.</span>
 <span class="decorator">@app.route</span>(<span class="string">"/"</span>)
 <span class="keyword">def</span> <span class="function">index</span>():
     <span class="string">"""Rota raiz: exibe instruções de como usar a demo."""</span>
@@ -98,12 +99,19 @@ app = Flask(__name__)
 
 <span class="comment"># O decorador @app.route define a rota dinâmica.</span>
 <span class="comment"># O trecho &lt;nome&gt; entre &lt; &gt; é um PARÂMETRO VARIÁVEL.</span>
+<span class="comment"># O Flask captura automaticamente o valor digitado na URL</span>
+<span class="comment"># e o passa como argumento para a função Python abaixo.</span>
 <span class="decorator">@app.route</span>(<span class="string">"/saudacao/&lt;nome&gt;"</span>)
 <span class="keyword">def</span> <span class="function">saudacao</span>(nome):
     <span class="string">""" Rota dinâmica: recebe o parâmetro 'nome' da URL. """</span>
     <span class="keyword">return</span> render_template(<span class="string">"saudacao.html"</span>, <span class="variable">nome</span>=nome)
 
 <span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># Lê a porta do ambiente (Vercel, etc), padrão 5000</span>
+    <span class="comment"># serve para garantir que o servidor só inicie quando</span>
+    <span class="comment"># executamos o script principal (index.py)</span>
+    <span class="comment"># além de permitir que, localmente, seja iniciado na porta 5000</span>
+    <span class="comment"># e, em nuvens, a porta seja automaticamente detectada.</span>
     port = <span class="function">int</span>(os.environ.get(<span class="string">"PORT"</span>, <span class="number">5000</span>))
     app.run(host=<span class="string">"0.0.0.0"</span>, port=port, debug=<span class="keyword">True</span>)</code></pre>
 </div>
