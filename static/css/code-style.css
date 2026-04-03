@@ -1,0 +1,37 @@
+/* Cores do Editor de Código (Estilo Dark) */
+pre code {
+    color: #d4d4d4; /* Cor padrão do texto */
+    font-family: 'Fira Code', monospace;
+    line-height: 1.5;
+}
+
+.keyword { color: #569cd6; font-weight: bold; }   /* import, from, def, return, if */
+.function { color: #dcdcaa; }                    /* nomes das funções */
+.string { color: #ce9178; }                      /* textos entre aspas */
+.comment { color: #6a9955; font-style: italic; } /* comentários em verde */
+.decorator { color: #dcdcaa; font-weight: bold; } /* @app.route */
+.variable { color: #9cdcfe; }                    /* variáveis */
+.number { color: #b5cea8; }                      /* números */
+
+/* Estilo extra para a caixa de código */
+.code-box {
+    background-color: #1e1e1e; /* Fundo preto do VS Code */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.code-header {
+    background-color: #323233;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filename {
+    color: #969696;
+    font-size: 13px;
+    margin-left: 10px;
+    font-family: sans-serif;
+}

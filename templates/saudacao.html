@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olá, {{ nome }}!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/page-style.css') }}" />
+</head>
+<body>
+
+  <div class="greeting-page">
+    <div class="greeting-card">
+      <div class="emoji-large">👋</div>
+      <h1>Olá, {{ nome }}!</h1>
+      <p>Este nome foi capturado diretamente da URL pelo Flask.<br />
+        Nenhuma entrada de formulário foi necessária.</p>
+
+      <div class="code-explanation">
+        <div class="code-label">Como o Flask capturou isso:</div>
+        <code class="code-block">
+          <span class="keyword">@app.route</span>('/saudacao/<span class="param">&lt;nome&gt;</span>')<br />
+          <span class="keyword">def</span> <span class="function">saudacao</span>(<span class="param">nome</span>):<br />
+          <span class="comment">    # nome = "{{ nome }}" ← capturado da URL</span>
+        </code>
+      </div>
+
+      <div class="button-group">
+        <a href="/" class="btn btn-primary">← Voltar ao Início</a>
+        <button onclick="randomName()" class="btn btn-secondary">Nome Aleatório 🎲</button>
+      </div>
+    </div>
+
+    <p class="url-display">
+      URL atual: <code>/saudacao/{{ nome }}</code>
+    </p>
+  </div>
+
+  <script>
+    function randomName() {
+      const names = ['Python', 'Flask', 'Dev', 'Estudante', 'Professor', 'Maria', 'João', 'Ana'];
+      const random = names[Math.floor(Math.random() * names.length)];
+      window.location.href = '/saudacao/' + random;
+    }
+  </script>
+
+</body>
+</html>
