@@ -39,7 +39,7 @@
     function randomName() {
       const names = ['Python', 'Flask', 'Dev', 'Estudante', 'Professor', 'Maria', 'João', 'Ana'];
       const random = names[Math.floor(Math.random() * names.length)];
-      window.location.href = '/saudacao/' + random;
+      window.location.href = '/saudacao/' + encodeURIComponent(random);
     }
   </script>
 
