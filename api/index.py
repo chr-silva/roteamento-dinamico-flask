@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template
+from urllib.parse import unquote
 
 # Criamos a instância da aplicação Flask.
 # __name__ informa ao Flask onde procurar templates e arquivos estáticos.
@@ -21,6 +22,7 @@ def index():
 # e o passa como argumento para a função Python abaixo.
 @app.route("/saudacao/<nome>")
 def saudacao(nome):
+    nome = unquote(nome)
     """
     Rota dinâmica: recebe o parâmetro 'nome' da URL.
 
